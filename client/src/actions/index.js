@@ -1,5 +1,42 @@
 import axios from 'axios';
 
+export const API_CALL_START = "API_CALL_START";
+export const API_CALL_END = "API_CALL_END";
+export const ADD_SMURF = "ADD_SMURF";
+export const SET_ERROR = "SET_ERROR";
+
+export const fetchSmurfs = () => dispatch => {
+  dispatch({type: API_CALL_START});
+  axios.get(`localhost:3333/smurfs`)
+  .then(res => {
+    console.log(res.data);
+    dispatch({type: API_CALL_END, payload: res.data});
+  })
+  .catch(err => {
+    console.log(err);
+    dispatch({type: SET_ERROR, payload: err})
+  })
+}
+export const addSmurf = (smurf) => dispatch => {
+  if(!smurf.name || !smurf.nickname || !smurf.position){
+    dispatch({type: SET_ERROR, payload: "Missing Parameter"})
+    return;
+  }
+  dispatch({type: API_CALL_START});
+  axios.post('localhost:3333/smurfs', smurf)
+  .then(res => {
+    console.log(res.data);
+    dispatch({type: ADD_SMURF, payload: res.data});
+  })
+  .catch(err =>{
+    console.log(err);
+    dispatch({type: SET_ERROR, payload: err});
+  })
+}
+export const setErrorText = (error) => dispatch => {
+
+}
+
 //Task List:
 //1. Add fetch smurfs action: 
 //              - fetch and return initial list of smurfs
