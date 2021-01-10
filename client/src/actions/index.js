@@ -24,7 +24,7 @@ export const addSmurf = (smurf) => dispatch => {
     return;
   }
   dispatch({type: API_CALL_START});
-  axios.post('localhost:3333/smurfs', smurf)
+  axios.post('http://localhost:3333/smurfs', smurf)
   .then(res => {
     console.log(res.data);
     dispatch({type: ADD_SMURF, payload: res.data});
