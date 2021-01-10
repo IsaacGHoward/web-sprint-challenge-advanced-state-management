@@ -10,13 +10,13 @@ const initialState = {
 const reducer = (state = initialState, action)=>{
   switch(action.type){
     case API_CALL_START:
-      return
+      return state;
     case API_CALL_END:
-      return
+      return state;
     case ADD_SMURF:
-      return
+      return state;
     case SET_ERROR:
-      return
+      return state;
     default:
       return state;
   }

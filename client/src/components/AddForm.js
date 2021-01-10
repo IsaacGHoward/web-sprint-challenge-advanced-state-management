@@ -1,14 +1,34 @@
 import React from 'react';
-
+import {connect} from 'react-redux';
+import { addSmurf } from '../actions/index'
 class AddForm extends React.Component {
-
+    constructor(props){
+      super(props);
+      this.state = {
+        name:'Isaac',
+        position:'1',
+        nickname:'I',
+        description:'Name is Isaac',
+      };
+    }
+    addSmurf(e){
+      console.log("ADD SMURF");
+      e.preventDefault();
+      this.props.addSmurf(this.state);
+    }
     render() {
         return(<section>
             <h2>Add Smurf</h2>
-            <form>
+            <form onSubmit={(e) => this.addSmurf(e)}>
                 <div className="form-group">
                     <label htmlFor="name">Name:</label><br/>
                     <input onChange={this.handleChange} name="name" id="name" />
+                    <label htmlFor="position">Position:</label><br/>
+                    <input onChange={this.handleChange} name="position" id="position" />
+                    <label htmlFor="nickname">Nickname:</label><br/>
+                    <input onChange={this.handleChange} name="nickname" id="nickname" />
+                    <label htmlFor="description">Description:</label><br/>
+                    <input onChange={this.handleChange} name="description" id="description" />
                 </div>
 
                 <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: </div>
@@ -17,8 +37,24 @@ class AddForm extends React.Component {
         </section>);
     }
 }
-
-export default AddForm;
+/*
+const mapStateToProps = state => {
+  return {
+    //isLoading: state.isLoading,
+    //error: state.error
+  };
+};
+*/
+function mapStateToProps(state){
+  return{
+    isLoading: state.isLoading
+  };
+}
+export default connect(
+  mapStateToProps,
+  { addSmurf }
+)(AddForm);
+//export default AddForm;
 
 //Task List:
 //1. Add in all necessary import components and library methods.

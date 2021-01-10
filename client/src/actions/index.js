@@ -18,6 +18,7 @@ export const fetchSmurfs = () => dispatch => {
   })
 }
 export const addSmurf = (smurf) => dispatch => {
+  console.log(smurf);
   if(!smurf.name || !smurf.nickname || !smurf.position){
     dispatch({type: SET_ERROR, payload: "Missing Parameter"})
     return;
