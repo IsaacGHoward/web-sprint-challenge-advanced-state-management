@@ -6,8 +6,9 @@ export const ADD_SMURF = "ADD_SMURF";
 export const SET_ERROR = "SET_ERROR";
 
 export const fetchSmurfs = () => dispatch => {
+  console.log("fetching");
   dispatch({type: API_CALL_START});
-  axios.get(`localhost:3333/smurfs`)
+  axios.get(`http://localhost:3333/smurfs`)
   .then(res => {
     console.log(res.data);
     dispatch({type: API_CALL_END, payload: res.data});

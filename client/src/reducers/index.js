@@ -19,14 +19,13 @@ const reducer = (state = initialState, action)=>{
       return {
         ...state,
         isLoading: false,
-        smurfs: [...this.state.smurfs,action.payload]
+        smurfs: [...state.smurfs,action.payload]
       };
     case ADD_SMURF:
       return {
-        ...state,
         isLoading: false,
         error: '',
-        smurfs: [...this.state.smurfs,action.payload]
+        smurfs: [...state.smurfs,action.payload]
       };
     case SET_ERROR:
       return {
