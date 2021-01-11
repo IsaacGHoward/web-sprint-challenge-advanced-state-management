@@ -14,6 +14,7 @@ class AddForm extends React.Component {
     }
     addSmurf(e){
       console.log("ADD SMURF");
+      e.preventDefault();
       this.props.addSmurf(this.state);
       this.setState(initialState);
     }
