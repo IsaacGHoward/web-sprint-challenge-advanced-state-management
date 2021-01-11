@@ -10,13 +10,30 @@ const initialState = {
 const reducer = (state = initialState, action)=>{
   switch(action.type){
     case API_CALL_START:
-      return state;
+      return {
+        ...state,
+        isLoading: true,
+        error: '',
+      };
     case API_CALL_END:
-      return state;
+      return {
+        ...state,
+        isLoading: false,
+        smurfs: [...this.state.smurfs,action.payload]
+      };
     case ADD_SMURF:
-      return state;
+      return {
+        ...state,
+        isLoading: false,
+        error: '',
+        smurfs: [...this.state.smurfs,action.payload]
+      };
     case SET_ERROR:
-      return state;
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
     default:
       return state;
   }

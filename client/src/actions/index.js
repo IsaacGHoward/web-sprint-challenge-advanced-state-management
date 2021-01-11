@@ -20,7 +20,7 @@ export const fetchSmurfs = () => dispatch => {
 export const addSmurf = (smurf) => dispatch => {
   console.log(smurf);
   if(!smurf.name || !smurf.nickname || !smurf.position){
-    dispatch({type: SET_ERROR, payload: "Missing Parameter"})
+    dispatch({type: SET_ERROR, payload: "Missing Parameter(s)"})
     return;
   }
   dispatch({type: API_CALL_START});
@@ -30,8 +30,8 @@ export const addSmurf = (smurf) => dispatch => {
     dispatch({type: ADD_SMURF, payload: res.data});
   })
   .catch(err =>{
-    console.log(err);
-    dispatch({type: SET_ERROR, payload: err});
+    console.log(err.response.data.Error);
+    dispatch({type: SET_ERROR, payload: err.response.data.Error});
   })
 }
 export const setErrorText = (error) => dispatch => {
