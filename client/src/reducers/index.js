@@ -1,8 +1,42 @@
 
-export const initialState = {
+import {API_CALL_START, API_CALL_END, ADD_SMURF, SET_ERROR} from '../actions/index';
+
+const initialState = {
+  smurfs:[],
+  isLoading:false,
+  error:'',
 }
 
-const reducer = ()=>{
+const reducer = (state = initialState, action)=>{
+  switch(action.type){
+    case API_CALL_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: '',
+      };
+    case API_CALL_END:
+      return {
+        ...state,
+        isLoading: false,
+        smurfs: [action.payload]
+      };
+    case ADD_SMURF:
+      return {
+        ...state,
+        isLoading: false,
+        error: '',
+        smurfs: [action.payload]
+      };
+    case SET_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+    default:
+      return state;
+  }
 }
 
 export default reducer;
