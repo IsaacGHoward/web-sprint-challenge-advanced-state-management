@@ -23,6 +23,7 @@ const reducer = (state = initialState, action)=>{
       };
     case ADD_SMURF:
       return {
+        ...state,
         isLoading: false,
         error: '',
         smurfs: [...state.smurfs,action.payload]

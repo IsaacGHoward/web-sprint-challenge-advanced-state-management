@@ -11,8 +11,7 @@ export class SmurfDisplay extends React.Component {
     }
     renderSmurfs(){
       //console.log(this.props.smurfs[0]);
-      if(this.props.smurfs.length === 0)
-        return;
+      
       return this.props.smurfs[0].map((smurf) => {
         return <Smurf smurf={smurf}/>
       })
@@ -22,7 +21,7 @@ export class SmurfDisplay extends React.Component {
             {this.props.isLoading &&
               <p>Loading...</p>
             }
-            {!this.props.isLoading &&
+            {this.props.smurfs[0] &&
               this.renderSmurfs()
             }
         </div>)
